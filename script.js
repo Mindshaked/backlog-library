@@ -45,6 +45,10 @@ form.addEventListener("submit", function(event) {
     showLog(newBook);
 
     
+    
+ 
+
+    
 });
 
 
@@ -52,58 +56,24 @@ form.addEventListener("submit", function(event) {
 
 
 
-//Function that displays the books
+// function that erase all books
 
-/*
-function showLog(newBook){
-      
-        
-        const card = document.createElement("div");
-        card.className = 'card';
-        const title = document.createElement("div");
-        title.className = 'card-title';
-        const author = document.createElement("div");
-        author.className = 'card-author';
-        const pages = document.createElement("div");
-        pages.className = 'card-pages';
-        const read = document.createElement("div");
-        read.className = 'card-read';
-        const eraseButton = document.createElement("button")
-        eraseButton = 'erase-button';
-
-       
-        author.innerText = "author: " + newBook.author; 
-        title.innerText = "title: " + newBook.title;
-        pages.innerText = "n. of pages: " + newBook.pages;
-        read.innerText = "read or not: " + newBook.read;
-
-        eraseButton.addEventListener('click', function(event) {
-            let bookIndex = newBook.position;
-            removeBookFromLibrary(bookIndex);
-        });
-        
-
-        logSection.appendChild(card);
-        card.appendChild(author);
-        card.appendChild(title);
-        card.appendChild(pages);
-        card.appendChild(read);
-        card.appendChild(eraseButton)
-
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
-*/
-
-// function that erase a book
 
 
 
-
-
+//Function that displays all the books again
 
 function showLog(){
     
     
+
     const logSection = document.getElementById("wrapper");
+    removeAllChildNodes(logSection);
 
     for (let i= 0; i < myLibrary.length; i++){
     
@@ -126,10 +96,13 @@ function showLog(){
     title.innerText = "title: " + myLibrary[i].title;
     pages.innerText = "n. of pages: " + myLibrary[i].pages;
     read.innerText = "read or not: " + myLibrary[i].read;
+    eraseButton.innerText = "X";
 
     eraseButton.addEventListener('click', function(event) {
         let bookIndex = myLibrary.position;
         removeBookFromLibrary(bookIndex);
+        removeAllChildNodes(logSection);
+        showLog();
     });
     
 
