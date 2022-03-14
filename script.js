@@ -7,6 +7,7 @@ function Book(author, title, pages, read) {
     this.title = title;
     this.pages = pages;
     this.read = read;
+    this.position = myLibrary.length + 1;
 }
 
 
@@ -18,14 +19,16 @@ function addBookToLibrary(newBook) {
     
 }
 
+function removeBookFromLibrary(bookIndex) {
+    myLibrary.splice(bookIndex, 1)
+}
+
 
 //when the person submits the form
 const form = document.getElementById('new-log');
 
 form.addEventListener("submit", function(event) {
 
-
-    //HACER ESTO COGIENDO EL MÉTODO DE UN PROTOTIPO Y NO TENER QUE LLAMAR CADA VEZ AL BOOK
     let author = form['author'].value;
     let title = form['title'].value;
     let pages = form['pages'].value;
@@ -39,7 +42,103 @@ form.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
+    showLog(newBook);
+
+    
 });
 
 
+
+
+
+
+//Function that displays the books
+
+/*
+function showLog(newBook){
+      
+        
+        const card = document.createElement("div");
+        card.className = 'card';
+        const title = document.createElement("div");
+        title.className = 'card-title';
+        const author = document.createElement("div");
+        author.className = 'card-author';
+        const pages = document.createElement("div");
+        pages.className = 'card-pages';
+        const read = document.createElement("div");
+        read.className = 'card-read';
+        const eraseButton = document.createElement("button")
+        eraseButton = 'erase-button';
+
+       
+        author.innerText = "author: " + newBook.author; 
+        title.innerText = "title: " + newBook.title;
+        pages.innerText = "n. of pages: " + newBook.pages;
+        read.innerText = "read or not: " + newBook.read;
+
+        eraseButton.addEventListener('click', function(event) {
+            let bookIndex = newBook.position;
+            removeBookFromLibrary(bookIndex);
+        });
+        
+
+        logSection.appendChild(card);
+        card.appendChild(author);
+        card.appendChild(title);
+        card.appendChild(pages);
+        card.appendChild(read);
+        card.appendChild(eraseButton)
+
+}
+*/
+
+// function that erase a book
+
+
+
+
+
+
+function showLog(){
+    
+    
+    const logSection = document.getElementById("wrapper");
+
+    for (let i= 0; i < myLibrary.length; i++){
+    
+
+    const card = document.createElement("div");
+    card.className = 'card';
+    const title = document.createElement("div");
+    title.className = 'card-title';
+    const author = document.createElement("div");
+    author.className = 'card-author';
+    const pages = document.createElement("div");
+    pages.className = 'card-pages';
+    const read = document.createElement("div");
+    read.className = 'card-read';
+    const eraseButton = document.createElement("button")
+    eraseButton.className = 'erase-button';
+
+   
+    author.innerText = "author: " + myLibrary[i].author; 
+    title.innerText = "title: " + myLibrary[i].title;
+    pages.innerText = "n. of pages: " + myLibrary[i].pages;
+    read.innerText = "read or not: " + myLibrary[i].read;
+
+    eraseButton.addEventListener('click', function(event) {
+        let bookIndex = myLibrary.position;
+        removeBookFromLibrary(bookIndex);
+    });
+    
+
+    logSection.appendChild(card);
+    card.appendChild(author);
+    card.appendChild(title);
+    card.appendChild(pages);
+    card.appendChild(read);
+    card.appendChild(eraseButton)
+    }
+}
 
