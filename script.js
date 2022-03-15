@@ -44,15 +44,10 @@ form.addEventListener("submit", function(event) {
 
     showLog(newBook);
 
-    
-    
- 
+    showForm();
 
     
 });
-
-
-
 
 
 
@@ -115,3 +110,35 @@ function showLog(){
     }
 }
 
+
+
+// Bring up and hide the form
+
+function showForm(){
+    if (form.style.visibility !== 'visible'){
+
+        form.style.visibility = 'visible';
+        blackBg.style.visibility = 'visible';
+        
+
+    } else {
+        form.style.visibility = 'hidden';
+        blackBg.style.visibility = 'hidden';
+
+    } 
+}
+
+const addNewBook = document.getElementById("add-book-button");
+const blackBg = document.getElementById("black-bg");
+
+addNewBook.addEventListener('click', function(e) {
+    
+    showForm();
+
+});
+
+blackBg.addEventListener('click', function(e) {
+
+    showForm();
+
+});
