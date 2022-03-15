@@ -46,10 +46,24 @@ form.addEventListener("submit", function(event) {
 
     showForm();
 
+
+    
+
     
 });
 
 
+// function to turn the value of read into a text.
+
+function readOrNot(value){
+    if (value == true){
+        const read = "read";
+        return read;
+    } else {
+        const notread = "not read";
+        return notread;
+    }
+}
 
 // function that erase all books
 
@@ -60,8 +74,21 @@ function removeAllChildNodes(parent) {
 }
 
 
+//register how many books are read
+
+function countBooksRead(){
+
+   const readCounter = document.getElementById("books-read");
+
+   let booksRead = getOcurrence(myLibrary);
+
+   readCounter.innerText = booksRead;
+
+   console.log(booksRead)
+}
 
 //Function that displays all the books again
+
 
 function showLog(){
     
@@ -90,7 +117,7 @@ function showLog(){
     author.innerText = "author: " + myLibrary[i].author; 
     title.innerText = "title: " + myLibrary[i].title;
     pages.innerText = "n. of pages: " + myLibrary[i].pages;
-    read.innerText = "read or not: " + myLibrary[i].read;
+    read.innerText = "read or not: " + readOrNot(myLibrary[i].read);
     eraseButton.innerText = "X";
 
     eraseButton.addEventListener('click', function(event) {
@@ -98,6 +125,7 @@ function showLog(){
         removeBookFromLibrary(bookIndex);
         removeAllChildNodes(logSection);
         showLog();
+        countBooksRead();
     });
     
 
@@ -107,12 +135,20 @@ function showLog(){
     card.appendChild(pages);
     card.appendChild(read);
     card.appendChild(eraseButton)
+
+
+    //register how many books are read
+
+    countBooksRead()
     }
 }
 
 
 
 // Bring up and hide the form
+
+const addNewBook = document.getElementById("add-book-button");
+const blackBg = document.getElementById("black-bg");
 
 function showForm(){
     if (form.style.visibility !== 'visible'){
@@ -128,8 +164,7 @@ function showForm(){
     } 
 }
 
-const addNewBook = document.getElementById("add-book-button");
-const blackBg = document.getElementById("black-bg");
+
 
 addNewBook.addEventListener('click', function(e) {
     
@@ -142,3 +177,16 @@ blackBg.addEventListener('click', function(e) {
     showForm();
 
 });
+
+
+// Count read books
+
+function getOcurrence(array){
+    let booksRead = 0;
+    array.forEach(function(v){
+     if(v.read == true)
+        {booksRead++};
+    });
+    return booksRead;
+    
+}
