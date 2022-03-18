@@ -87,6 +87,18 @@ function countBooksRead(){
    console.log(booksRead)
 }
 
+
+// Button to check a book as read or not.
+
+function bookIsRead(bookIndex) {
+       
+    if (myLibrary[bookIndex].read == true){
+        myLibrary[bookIndex].read = false;
+    } else {
+        myLibrary[bookIndex].read = true;
+    }
+    
+}
 //Function that displays all the books again
 
 
@@ -112,13 +124,18 @@ function showLog(){
     read.className = 'card-read';
     const eraseButton = document.createElement("button")
     eraseButton.className = 'erase-button';
+    const readBookButton = document.createElement("button");
+    readBookButton.className = 'readbook-button';
 
+   
+    console.log(myLibrary[0].read);
    
     author.innerText = "author: " + myLibrary[i].author; 
     title.innerText = "title: " + myLibrary[i].title;
     pages.innerText = "n. of pages: " + myLibrary[i].pages;
     read.innerText = "read or not: " + readOrNot(myLibrary[i].read);
     eraseButton.innerText = "X";
+    readBookButton.innerText = "V";
 
     eraseButton.addEventListener('click', function(event) {
         let bookIndex = myLibrary.position;
@@ -127,7 +144,15 @@ function showLog(){
         showLog();
         countBooksRead();
     });
-    
+
+    readBookButton.addEventListener('click', function(event) {
+        let bookIndex = myLibrary.position;
+        bookIsRead(bookIndex);
+        showLog();
+        countBooksRead();
+
+    });
+
 
     logSection.appendChild(card);
     card.appendChild(author);
@@ -135,6 +160,7 @@ function showLog(){
     card.appendChild(pages);
     card.appendChild(read);
     card.appendChild(eraseButton)
+    card.appendChild(readBookButton);
 
 
     //register how many books are read
