@@ -122,6 +122,17 @@ body {
 
 }
 
+.readbook-button{
+    border-radius: 15px;
+    border: none;
+    width: 60px;
+    height: 40px;
+    color: white;
+    font-weight: 600;
+    position: absolute;
+    bottom: 10px;
+}
+
 
 
 #new-log > input {

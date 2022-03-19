@@ -56,7 +56,7 @@ form.addEventListener("submit", function(event) {
 // function to turn the value of read into a text.
 
 function readOrNot(value){
-    if (value == true){
+    if (value.read == true){
         const read = "read";
         return read;
     } else {
@@ -99,6 +99,10 @@ function bookIsRead(bookIndex) {
     }
     
 }
+
+
+
+
 //Function that displays all the books again
 
 
@@ -127,26 +131,34 @@ function showLog(){
     const readBookButton = document.createElement("button");
     readBookButton.className = 'readbook-button';
 
-   
-    console.log(myLibrary[0].read);
+    function readBookButtonColor(book){
+        if (book.read == true){
+            readBookButton.style.background = 'green';
+        } else {
+            readBookButton.style.background = 'red';
+        }
+    }
+    readBookButtonColor(myLibrary[i]);
+
+
+    console.log(myLibrary[i].position)
    
     author.innerText = "author: " + myLibrary[i].author; 
     title.innerText = "title: " + myLibrary[i].title;
     pages.innerText = "n. of pages: " + myLibrary[i].pages;
-    read.innerText = "read or not: " + readOrNot(myLibrary[i].read);
     eraseButton.innerText = "X";
-    readBookButton.innerText = "V";
+    readBookButton.innerText = readOrNot(myLibrary[i]);
 
     eraseButton.addEventListener('click', function(event) {
-        let bookIndex = myLibrary.position;
+        let bookIndex = myLibrary[i].position - 1;
+        console.log(bookIndex);
         removeBookFromLibrary(bookIndex);
-        removeAllChildNodes(logSection);
         showLog();
         countBooksRead();
     });
 
     readBookButton.addEventListener('click', function(event) {
-        let bookIndex = myLibrary.position;
+        let bookIndex =  myLibrary[i].position - 1;
         bookIsRead(bookIndex);
         showLog();
         countBooksRead();
@@ -158,7 +170,7 @@ function showLog(){
     card.appendChild(author);
     card.appendChild(title);
     card.appendChild(pages);
-    card.appendChild(read);
+    
     card.appendChild(eraseButton)
     card.appendChild(readBookButton);
 
