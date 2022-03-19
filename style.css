@@ -22,6 +22,9 @@ body {
 #lateral-menu {
     grid-column: 3 / 4;
     grid-row: 2 / 5;
+    background-color: rgb(197, 197, 197);
+    padding: 23px;
+    border-radius: 15px;
 }
 
 #book-counter {
@@ -35,8 +38,17 @@ body {
     position: relative;
     justify-content: center;
     align-items: center;
+    background-color: rgb(203, 203, 236);
+    border-radius: 15px;
 }
 
+#web-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
 
 .card {
     margin: 15px;
@@ -49,7 +61,7 @@ body {
     align-items: center;
     background-color: white;
     position:relative;
-    border-left: 10px solid coral;
+    border-left: 10px solid rgb(79, 102, 167);
 
 }
 
@@ -62,7 +74,8 @@ body {
     position: absolute;
     top: 8px;
     right: 8px;
-    transition: brackground-color 300ms ease-in-out 0s;
+    transition: background-color 400ms;
+    cursor: pointer;
 }
 
 .erase-button:hover {
@@ -77,9 +90,11 @@ body {
     font-family:'Courier New', Courier, monospace;
     border: none;
     box-shadow: 2px 3px 8px black;
-    background-color: coral;
+    background-color: rgb(79, 102, 167);
     color: white;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 400ms;
 }
 
 #add-book-button:hover {
@@ -131,6 +146,12 @@ body {
     font-weight: 600;
     position: absolute;
     bottom: 10px;
+    cursor: pointer;
+    
+}
+
+.readbook-button:hover {
+    filter: brightness(1.3)
 }
 
 
